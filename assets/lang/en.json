@@ -1,6 +1,6 @@
 {
     "app_title":"MedSafety",
-    "reporter_info": "Sender",
+    "reporter_info": "Reporter",
     "patient_details": "Patient",
     "adverse_reactions": "Reactions",
     "drugs": "Drugs",
@@ -82,6 +82,10 @@
     "adverse_note": "Note: If all adverse reactions have the same onset date, outcome, and duration time,you can write all of them in one field",
     "onset_date":"Onset Date",
     "outcome": "Outcome",
+    "seriousness_level": "Seriousness Level",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "select": "Select",
     "time": "Time",
     "duration": "Duration",
     "outcomes": [

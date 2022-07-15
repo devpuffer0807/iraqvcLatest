@@ -1,4 +1,4 @@
-package com.zapota.iphvc
+package com.zapota.iphvc1
 
 import io.flutter.embedding.android.FlutterActivity
 

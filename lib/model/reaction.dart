@@ -4,6 +4,7 @@ class Reaction {
   String onset_date;
   String outcome;
   String seriousness;
+  String sel_seriousness;
   String duration;
   String duration_time;
   String end_date;
@@ -16,6 +17,7 @@ class Reaction {
         onset_date = json['onset_date'],
         outcome = json['outcome'],
         seriousness = json['seriousness'],
+        sel_seriousness = json['sel_seriousness'],
         duration = json['duration'],
         duration_time = json['duration_time'],
         end_date = json['end_date'];
@@ -26,6 +28,7 @@ class Reaction {
     'onset_date': onset_date,
     'outcome': outcome,
     'seriousness':seriousness,
+    'sel_seriousness':sel_seriousness,
     'duration': duration,
     'duration_time': duration_time,
     'end_date': end_date

@@ -124,7 +124,7 @@ class Gmail{
     String tempReactionHtmlTemplate = '';
     reactionList.list.forEach((reaction) {
       log("Reaction1: " +reaction.toJson().toString());
-      String a = reaction.seriousness.toString();
+      String a = reaction.sel_seriousness.toString();
       a = a.replaceAll("[", "");
       a = a.replaceAll("]", "");
       tempReactionHtmlTemplate = reactionHtmlTemplate.replaceAll("[REACTION_NAME]", reaction.name)
@@ -136,6 +136,8 @@ class Gmail{
           .replaceAll("[REACTION_ENDDATE]", checkfornull(reaction.end_date));
       reactionsHtml += tempReactionHtmlTemplate;
     });
+
+
 
     String drugsHtmlTemplate = '''    
     <table style="border-color: #000000;" border="1" cellspacing="0" cellpadding="5">
@@ -246,7 +248,6 @@ class Gmail{
     String drugsHtml = '';
     String tempDrugsHtmlTemplate = '';
     _drugList.list.forEach((drug) {
-      log("Drug1: " +drug.toJson().toString());
       tempDrugsHtmlTemplate = drugsHtmlTemplate.replaceAll("[DRUG_NAME]", drug.name)
           .replaceAll("[DRUG_ROLE]", drug.role )
           .replaceAll("[DRUG_DOSE]", checkfornull(drug.dose))
@@ -271,7 +272,6 @@ class Gmail{
         .replaceAll("[DRUGS_LIST]", drugsHtml);
         //.replaceAll("[DRUGS_IMAGES]", drugs_images);
 
-    log("email: " + email);
     envelope.html =  email;
 
     var options = new GmailSmtpOptions()
@@ -294,13 +294,15 @@ class Gmail{
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
+
       body: jsonEncode(<String, String>{
         'content': email,
         'email': 'iraqiphvc2022@gmail.com',
-        //'email': 'pufferdev0807@gmail.com',
+//        'email': 'pufferdev0807@gmail.com',
       }),
     );
 //    log("status:" + response.toString());
+    log("=========" + email);
     complete(context);
 //    if (response == 201) {
 //      complete(context);

@@ -334,7 +334,7 @@ class _ReactionFormState extends State<ReactionForm> {
         onEndDate.text = reaction1.end_date;
         name.text = reaction1.name;
         duration.text = reaction1.duration;
-        selectedSeriousness = reaction1.seriousness;
+        selectedSeriousness = reaction1.sel_seriousness;
         selectedOutcome = reaction1.outcome;
         selectedTime = reaction1.duration_time;
       });
@@ -388,7 +388,6 @@ class _ReactionFormState extends State<ReactionForm> {
               child:
                   Text(ApplicationLocalizations.of(context).translate("edit")),
               onPressed: () {
-                log(reaction.toJson().toString());
                 int i = 0;
                 for (Reaction list in reactionList.list) {
                   if (list.id == reaction1.id) {
@@ -397,9 +396,10 @@ class _ReactionFormState extends State<ReactionForm> {
                   }
                   i++;
                 }
-
-                reactionList.add(reaction);
-                log(reactionList.toJson().toString());
+                setState(() {
+                  reaction.sel_seriousness = selectedSeriousness.toString();
+                  reactionList.add(reaction);
+                });
                 sharedPref.save(_source, reactionList);
                 Navigator.of(context).pop();
               },
@@ -491,14 +491,16 @@ class _ReactionFormState extends State<ReactionForm> {
                         ),
                         MultiSelectDialogField(
                           items: seriousness.map((e) => MultiSelectItem(e, e)).toList(),
+                          cancelText: Text(ApplicationLocalizations.of(context).translate("cancel").toString()),
+                          confirmText: Text(ApplicationLocalizations.of(context).translate("ok").toString()),
+                          title: Text(ApplicationLocalizations.of(context).translate("select").toString()),
                           listType: MultiSelectListType.LIST,
-                          buttonText: Text("Seriousness Level"),
-                          initialValue: selectedSeriousness == null ? [] : selectedSeriousness.split(","),
+                          buttonText: Text(ApplicationLocalizations.of(context).translate("seriousness_level").toString()),
+                          initialValue: selectedSeriousness == null ? [] : reaction.sel_seriousness.split(","),
                           onConfirm: (values) {
-                            //_selectedAnimals = values;
-                            log("---" + values[0]);
+                            selectedSeriousness = values.join(",");
                             setState(() {
-                              reaction.seriousness = values.toString();
+                              reaction.sel_seriousness = values.join(",");
                             });
                           },
                           decoration: BoxDecoration(

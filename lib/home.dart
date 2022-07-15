@@ -180,7 +180,7 @@ class _HomeState extends State<Home> {
               onTap: () {
                 RateMyApp rateMyApp = RateMyApp(
                   preferencesPrefix: 'rateMyApp_',
-                  googlePlayIdentifier: 'com.zapota.iphvc',
+                  googlePlayIdentifier: 'com.zapota.iphvc1',
                   minDays: 0, // Show rate popup on first day of install.
                   minLaunches: 5, // Show rate popup after 5 launches of app after minDays is passed.
                 );
